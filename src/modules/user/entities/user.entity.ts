@@ -1,6 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Task } from '../../task/entities/task.entity';
 
+//design structure of user table in database
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -9,12 +10,13 @@ export class User {
   @Column()
   username: string;
 
-  @Column({ unique: true })
+  @Column({ unique: true, nullable: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   password: string;
 
+// one user can have many tasks
   @OneToMany(() => Task, task => task.user)
   tasks: Task[];
 } 

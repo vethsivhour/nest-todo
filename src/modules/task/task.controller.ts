@@ -11,6 +11,7 @@ import {
 import { TasksService } from './task.service';
 import { Task } from './entities/task.entity';
 
+//handle http requests from frontend
 @Controller('tasks')
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
@@ -26,7 +27,7 @@ export class TasksController {
   }
 
   @Post()
-  create(@Body() createTaskDto: Partial<Task>) {
+  create(@Body() createTaskDto: Partial<Task>): Promise<Task> {
     return this.tasksService.create(createTaskDto);
   }
 
